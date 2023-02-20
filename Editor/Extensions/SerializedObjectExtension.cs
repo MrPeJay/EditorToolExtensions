@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using EditorExtension.Attributes;
@@ -34,6 +35,35 @@ namespace EditorExtension.Extensions
 			}
 
 			return null;
+		}
+
+		/// <summary>
+		/// Returns all available serialized properties.
+		/// </summary>
+		/// <param name="serializedObject"></param>
+		/// <returns></returns>
+		public static SerializedProperty[] GetSerializedProperties(this SerializedObject serializedObject)
+		{
+			var targetType = serializedObject.targetObject.GetType();
+
+			var serializedPropertyList = new List<SerializedProperty>();
+
+			var fields = targetType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+
+			for (var i = 0; i < fields.Length; i++)
+			{
+				try
+				{
+					var property = serializedObject.FindProperty(fields[i].Name);
+					serializedPropertyList.Add(property);
+				}
+				catch (Exception e)
+				{
+					//ignored
+				}
+			}
+
+			return serializedPropertyList.ToArray();
 		}
 
 		/// <summary>
