@@ -7,7 +7,7 @@ using Object = UnityEngine.Object;
 
 namespace EditorExtension.Helpers
 {
-	public static class AssetExtension
+	public static class AssetHelper
 	{
 		public class AssetInfo<T> where T : Object
 		{

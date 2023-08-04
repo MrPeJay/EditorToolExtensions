@@ -41,13 +41,5 @@ namespace EditorExtension.Extensions
 				GUI.enabled = true;
 			}
 		}
-
-		protected void DrawInColor(Color color, Action drawAction)
-		{
-			var prevColor = GUI.color;
-			GUI.color = color;
-			drawAction();
-			GUI.color = prevColor;
-		}
-	}
+    }
 }
