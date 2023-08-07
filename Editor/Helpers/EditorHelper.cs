@@ -26,7 +26,7 @@ namespace EditorExtension.Helpers
             using (new EditorGUILayout.HorizontalScope())
             {
                 EditorGUILayout.TextField(fieldName, currentSelectedPath);
-                PathAttributeDrawer.DrawPathSelectionLayout(new PathAttribute(pathType),
+                PathAttributeDrawer.DrawPathSelectionLayout(new PathAttribute(pathType, directory: currentSelectedPath),
                     out var selectedPath, out var revert);
 
                 if (!string.IsNullOrEmpty(selectedPath) || revert)
